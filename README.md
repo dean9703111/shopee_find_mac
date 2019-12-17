@@ -30,7 +30,6 @@ python shopee.py --keyword='macbook pro' --totalCount=1000 --conditions --price_
 ```
 
 ### 參數說明
-```
 |  參數   | 型態  | 說明  | 預設值  |
 |  ----  | ----  | ----  | ----  |
 | keyword  | 字串 |  搜尋關鍵字 | 'macbook pro' |
@@ -40,4 +39,3 @@ python shopee.py --keyword='macbook pro' --totalCount=1000 --conditions --price_
 | price_max  | 數字整數 |  最高價格 | 45000 |
 | start_year  | 數字整數 |  mac開始年份 | 2015 |
 | min_RAM  | 數字整數 |  最小RAM接受度 | 16 |
-```
