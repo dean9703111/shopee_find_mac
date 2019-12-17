@@ -9,6 +9,7 @@ https://www.python.org/downloads/release/python-2717/
 相關套件
 ```
 pip install xlsxwriter
+pip install argparse
 ```
 如果你想要製作出來給大家用，打包 .py 檔
 
@@ -26,7 +27,7 @@ pyinstaller -F shopee.py
 
 #### 或是你可以直接下指令如下
 ```
-python shopee.py --keyword='macbook pro' --totalCount=1000 --conditions --price_min=32000 --price_max=45000 --start_year=2015 --min_RAM=16
+python shopee.py --keyword='macbook pro' --search_limit=1000 --conditions=None --price_min=32000 --price_max=45000 --start_year=2015 --min_RAM=16
 ```
 
 ### 參數說明
