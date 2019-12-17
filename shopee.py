@@ -6,6 +6,17 @@ import sys
 import time
 import math
 import os
+import argparse
+parser = argparse.ArgumentParser(description='manual to this script')
+parser.add_argument('--keyword', type=str, default = 'macbook pro')
+parser.add_argument('--search_limit', type=int, default=100)
+parser.add_argument('--conditions', type=str, default=None)
+parser.add_argument('--price_min', type=int, default=32000)
+parser.add_argument('--price_max', type=int, default=45000)
+parser.add_argument('--start_year', type=int, default=2015)
+parser.add_argument('--min_RAM', type=int, default=16)
+args = parser.parse_args()
+
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -77,11 +88,11 @@ def excel_content(worksheet, data, headers, row, start_year, min_RAM):
     else:
         return False
 
-def shopee_scraper(keyword, totalCount=50, conditions=None, price_min=None, price_max=None, start_year=None, RAM=None):
+def shopee_scraper(keyword, search_limit=50, conditions=None, price_min=None, price_max=None, start_year=None, RAM=None):
     # url = 'https://shopee.tw/search?keyword=' + keyword + '&page=' + n_page + '&sortBy=relevancy'
     # 確認要跑多少次
     row = 0
-    runTimes = int(math.ceil(totalCount / 50))
+    runTimes = int(math.ceil(search_limit / 50))
     # Create a workbook and add a worksheet.
     workbook = xlsxwriter.Workbook('shopee.xlsx')
     worksheet = workbook.add_worksheet()
@@ -111,7 +122,7 @@ def shopee_scraper(keyword, totalCount=50, conditions=None, price_min=None, pric
         if len(api1_data['items']) == 0:
             break
         for data in api1_data['items']:
-            is_insert = excel_content(worksheet, data, headers, row, start_year, RAM)
+            is_insert = excel_content(worksheet, data, headers, row, str(start_year), str(RAM))
             if is_insert:
                 row += 1
             # 因為本身內部運算時間也不少，所以似乎不用這個間隔了...
@@ -119,5 +130,5 @@ def shopee_scraper(keyword, totalCount=50, conditions=None, price_min=None, pric
     workbook.close()
 
 
-# shopee_scraper(keyword,totalCount,conditions,price_min,price_max,start_year,min_RAM)
-shopee_scraper('macbook pro', 1000, None, '32000', '45000', '2015', '16')
+# shopee_scraper(keyword,search_limit,conditions,price_min,price_max,start_year,min_RAM)
+shopee_scraper(args.keyword, args.search_limit, args.conditions, args.price_min, args.price_max, args.start_year, args.min_RAM)

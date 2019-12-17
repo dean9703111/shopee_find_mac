@@ -26,5 +26,18 @@ pyinstaller -F shopee.py
 
 #### 或是你可以直接下指令如下
 ```
-python shopee.spec
+python shopee.py --keyword='macbook pro' --totalCount=1000 --conditions --price_min=32000 --price_max=45000 --start_year=2015 --min_RAM=16
+```
+
+### 參數說明
+```
+|  參數   | 型態  | 說明  | 預設值  |
+|  ----  | ----  | ----  | ----  |
+| keyword  | 字串 |  搜尋關鍵字 | 'macbook pro' |
+| search_limit  | 數字整數 |  要搜尋多少筆資訊，50倍數為佳 | 100 |
+| conditions  | 字串 |  used(二手)/new(全新) | None |
+| price_min  | 數字整數 |  最低價格 | 32000 |
+| price_max  | 數字整數 |  最高價格 | 45000 |
+| start_year  | 數字整數 |  mac開始年份 | 2015 |
+| min_RAM  | 數字整數 |  最小RAM接受度 | 16 |
 ```
