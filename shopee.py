@@ -46,8 +46,10 @@ def excel_content(worksheet, data, headers, row, start_year, min_RAM):
     RAMArr = ['8g', '16g', '32g', '8G', '16G', '32G', '8', '16', '32']
     ROMArr = ['128G', '256G', '512G', '1T', '128g', '256g', '512g', '1t', '128', '256', '512']
     CPUArr = ['i5', 'i7', 'i9']
+    soldOutArr = ['已售出', '售出']
     macScreenSize = macYear = macRAM = macROM = macCPU = ''
     jumpItem = False
+    
     for screenSize in screenSizeArr:
         if name.find(screenSize) != -1:
             macScreenSize = screenSize
@@ -63,6 +65,10 @@ def excel_content(worksheet, data, headers, row, start_year, min_RAM):
     for CPU in CPUArr:
         if name.find(CPU) != -1:
             macCPU = CPU
+    # 過濾掉已經販賣出去的
+    for soldOut in soldOutArr:
+        if name.find(soldOut) != -1:
+            jumpItem = True
     # 確認符合需求才能放入
     if min_RAM:
         if macRAM == '':
